@@ -1,0 +1,3 @@
+export const FETCH_RECORDS = "@ENTRIES/FETCH_RECORDS";
+export const ERROR = "@ENTRIES/ERROR";
+export const START_LOAD = "@ENTRIES/START_LOAD";
