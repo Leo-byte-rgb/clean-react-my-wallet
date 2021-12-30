@@ -1,6 +1,6 @@
-import { FindExpense } from "../../../domain/useCases/Expense/find";
-import { HttpGetClient } from "../../protocols/http/http-get-client";
-import { Expense } from "../../../domain/models/expense";
+import { FindExpense } from '../../../domain/useCases/Expense/find';
+import { HttpGetClient } from '../../protocols/http/http-get-client';
+import { Expense } from '../../../domain/models/expense';
 
 export class RemoteFindExpense implements FindExpense {
   constructor(
@@ -13,7 +13,7 @@ export class RemoteFindExpense implements FindExpense {
     const httpResponse = await this.httpGetResponse.get({
       url: `${this.url}/${this.id}`,
       headers: {
-        "Content-Type": "application-json",
+        'Content-Type': 'application-json',
       },
     });
 
@@ -24,6 +24,7 @@ export class RemoteFindExpense implements FindExpense {
       frequency: data.frequency,
       amount: data.amount,
       createdAt: data.createdAt,
+      type: data.type,
     };
   }
 }

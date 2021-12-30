@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -27,6 +27,13 @@ body {
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
 }
+
+textarea, button, select, input, option, button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
 
 `;
 

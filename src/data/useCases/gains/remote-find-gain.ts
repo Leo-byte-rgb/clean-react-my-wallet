@@ -1,6 +1,6 @@
-import { FindGain } from "../../../domain/useCases/Gain/find";
-import { HttpGetClient } from "../../protocols/http/http-get-client";
-import { Gain } from "../../../domain/models/gain";
+import { FindGain } from '../../../domain/useCases/Gain/find';
+import { HttpGetClient } from '../../protocols/http/http-get-client';
+import { Gain } from '../../../domain/models/gain';
 
 export class RemoteFindGain implements FindGain {
   constructor(
@@ -13,7 +13,7 @@ export class RemoteFindGain implements FindGain {
     const httpResponse = await this.httpGetResponse.get({
       url: `${this.url}/${this.id}`,
       headers: {
-        "Content-Type": "application-json",
+        'Content-Type': 'application-json',
       },
     });
 
@@ -24,6 +24,7 @@ export class RemoteFindGain implements FindGain {
       frequency: data.frequency,
       amount: data.amount,
       createdAt: data.createdAt,
+      type: data.type,
     };
   }
 }

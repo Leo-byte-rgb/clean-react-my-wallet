@@ -18,7 +18,7 @@ const INITIAL: InitialState = {
 
 type State = typeof INITIAL;
 
-const entriesReducer = (state = INITIAL, action: any): State => {
+const expensesReducer = (state = INITIAL, action: any): State => {
   switch (action.type) {
     case Types.FETCH_RECORDS:
       return { ...state, data: action.data, loading: false };
@@ -31,4 +31,4 @@ const entriesReducer = (state = INITIAL, action: any): State => {
   }
 };
 
-export default entriesReducer;
+export default expensesReducer;

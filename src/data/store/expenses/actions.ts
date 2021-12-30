@@ -6,7 +6,7 @@ const fetchRecords =
   (httpGetClient: HttpGetClient) => async (dispatch: Dispatch) => {
     dispatch({ type: Types.START_LOAD });
     try {
-      const { data } = await httpGetClient.get({ url: '/entries' });
+      const { data } = await httpGetClient.get({ url: '/expenses' });
       dispatch({ type: Types.FETCH_RECORDS, data });
     } catch (error) {
       dispatch({ type: Types.ERROR, error });

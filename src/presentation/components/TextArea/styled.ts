@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
-export const SelectUI = styled.select`
+export const TextAreaUI = styled.textarea`
   width: 100%;
-  height: 40px;
+  height: 100%;
 
+  min-height: 233px;
   border-radius: 5px;
 
-  outline: none;
-  border: none;
+  border: 0;
+  outline: 0;
 
-  padding: 0 0.3rem;
+  padding: 0.5rem 0.3rem;
 `;
 
 export const Container = styled.div`
@@ -20,7 +21,8 @@ export const Container = styled.div`
 
   width: 100%;
   height: 100%;
-`;
-export const Label = styled.label`
+
   color: ${(props) => props.theme.colors.white};
+  font-weight: 500;
 `;
+export const Label = styled.label``;

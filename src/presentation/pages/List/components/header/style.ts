@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -18,4 +18,9 @@ export const Title = styled.h2`
 export const OptionsContainer = styled.div`
   display: flex;
   gap: 20px;
+
+  select {
+    height: 30px;
+    width: 110px;
+  }
 `;

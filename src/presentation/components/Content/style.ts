@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -8,6 +8,8 @@ export const Container = styled.div`
   height: 100%;
 
   grid-area: CONTENT;
+
+  overflow-y: auto;
 
   background: ${(props) => props.theme.colors.primaryBackground};
 `;

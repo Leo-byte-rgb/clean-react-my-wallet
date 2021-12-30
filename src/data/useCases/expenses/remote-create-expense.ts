@@ -1,6 +1,6 @@
-import { CreateExpense } from "../../../domain/useCases/Expense/create";
-import { HttpPostClient } from "../../protocols/http/http-post-client";
-import { Expense } from "../../../domain/models/expense";
+import { CreateExpense } from '../../../domain/useCases/Expense/create';
+import { HttpPostClient } from '../../protocols/http/http-post-client';
+import { Expense } from '../../../domain/models/expense';
 
 export class RemoteCreateExpense implements CreateExpense {
   constructor(
@@ -21,7 +21,7 @@ export class RemoteCreateExpense implements CreateExpense {
         name,
       },
       headers: {
-        "Content-Type": "application-json",
+        'Content-Type': 'application-json',
       },
     });
 
@@ -32,6 +32,7 @@ export class RemoteCreateExpense implements CreateExpense {
       frequency: data.frequency,
       amount: data.amount,
       createdAt: data.createdAt,
+      type: data.type,
     };
   }
 }

@@ -1,6 +1,6 @@
-import { CreateGain } from "../../../domain/useCases/Gain/create";
-import { HttpPostClient } from "../../protocols/http/http-post-client";
-import { Gain } from "../../../domain/models/gain";
+import { CreateGain } from '../../../domain/useCases/Gain/create';
+import { HttpPostClient } from '../../protocols/http/http-post-client';
+import { Gain } from '../../../domain/models/gain';
 
 export class RemoteCreateGain implements CreateGain {
   constructor(
@@ -17,7 +17,7 @@ export class RemoteCreateGain implements CreateGain {
         name,
       },
       headers: {
-        "Content-Type": "application-json",
+        'Content-Type': 'application-json',
       },
     });
 
@@ -28,6 +28,7 @@ export class RemoteCreateGain implements CreateGain {
       frequency: data.frequency,
       amount: data.amount,
       createdAt: data.createdAt,
+      type: data.type,
     };
   }
 }

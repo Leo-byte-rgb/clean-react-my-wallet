@@ -1,6 +1,6 @@
-import { UpdateExpense } from "../../../domain/useCases/Expense/update";
-import { HttpUpdateClient } from "../../protocols/http/http-update-client";
-import { Expense } from "../../../domain/models/expense";
+import { UpdateExpense } from '../../../domain/useCases/Expense/update';
+import { HttpUpdateClient } from '../../protocols/http/http-update-client';
+import { Expense } from '../../../domain/models/expense';
 
 export class RemoteUpdateExpense implements UpdateExpense {
   constructor(
@@ -22,7 +22,7 @@ export class RemoteUpdateExpense implements UpdateExpense {
         name,
       },
       headers: {
-        "Content-Type": "application-json",
+        'Content-Type': 'application-json',
       },
     });
 
@@ -33,6 +33,7 @@ export class RemoteUpdateExpense implements UpdateExpense {
       frequency: data.frequency,
       amount: data.amount,
       createdAt: data.createdAt,
+      type: data.type,
     };
   }
 }

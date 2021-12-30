@@ -1,11 +1,11 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from 'axios';
 import {
   HttpGetClient,
   HttpPostClient,
   HttpUpdateClient,
-} from "../data/protocols/http";
+} from '../data/protocols/http';
 
-const api = axios.create({ baseURL: "http://localhost:3003" });
+const api = axios.create({ baseURL: 'http://localhost:3003' });
 
 export class HttpClient
   implements HttpUpdateClient, HttpPostClient, HttpGetClient

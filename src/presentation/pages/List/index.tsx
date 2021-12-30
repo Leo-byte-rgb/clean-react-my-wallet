@@ -1,37 +1,43 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Expense } from "../../../domain/models/expense";
-import { Gain } from "../../../domain/models/gain";
-import { HttpGetClient } from "../../../data/protocols/http";
-import { FormatCurrency } from "../../../domain/useCases/Currency/currency";
-import { GetYearsByRecords } from "../../../domain/useCases/DatesByRecords/year-by-records";
-import { fetchRecords } from "../../../data/store/entries/actions";
-import Header from "./components/header";
-import ListItem from "./components/listItem";
-import { Container } from "./styled";
+import React, { ChangeEvent, useEffect, useState } from 'react';
+
+import Header from './components/header';
+import ListItem from './components/listItem';
+import ListSkeleton from '../../Skeletons/List';
+
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Expense } from '../../../domain/models/expense';
+import { Gain } from '../../../domain/models/gain';
+import { HttpGetClient } from '../../../data/protocols/http';
+import { FormatCurrency } from '../../../domain/useCases/Currency/currency';
+import { GetYearsByRecords } from '../../../domain/useCases/DatesByRecords/year-by-records';
+import { FormatDateRecord } from '../../../domain/useCases/DatesByRecords/format-date-record';
+import { fetchRecords as fetchEntries } from '../../../data/store/entries/actions';
+import { fetchRecords as fetchExpenses } from '../../../data/store/expenses/actions';
+
+import { Container } from './styled';
 
 interface IListProps {
   httpGetClient: HttpGetClient;
-  dateFormatterClient: GetYearsByRecords;
+  dateFormatterClient: GetYearsByRecords & FormatDateRecord;
   currencyFormatterClient: FormatCurrency;
 }
 
 type Records = Expense[] | Gain[] | undefined;
 
 const MONTHS_ARRAY = [
-  "Janeiro",
-  "Fevereiro",
-  "Março",
-  "Abril",
-  "Maio",
-  "Junho",
-  "Julho",
-  "Agosto",
-  "Setembro",
-  "Outubro",
-  "Novembro",
-  "Dezembro",
+  'Janeiro',
+  'Fevereiro',
+  'Março',
+  'Abril',
+  'Maio',
+  'Junho',
+  'Julho',
+  'Agosto',
+  'Setembro',
+  'Outubro',
+  'Novembro',
+  'Dezembro',
 ];
 
 const List: React.FC<IListProps> = ({
@@ -41,13 +47,15 @@ const List: React.FC<IListProps> = ({
 }) => {
   const { type } = useParams();
 
-  const format = currencyFormatterClient.format;
+  const formatCurrency = currencyFormatterClient.format;
+  const formatDate = dateFormatterClient.formatDate;
 
-  const listType = type === "entradas" ? "entradas" : "saidas";
-  const reducer = type === "entradas" ? "entriesReducer" : "entriesReducer";
+  const listType = type === 'entradas' ? 'entradas' : 'saidas';
+  const reducer = type === 'entradas' ? 'entries' : 'expenses';
 
   const dispatch = useDispatch();
   const records: Records = useSelector((reducers) => reducers[reducer].data);
+  const loading: boolean = useSelector((reducers) => reducers[reducer].loading);
 
   const years = dateFormatterClient.getYears({ records });
   const months = [...MONTHS_ARRAY];
@@ -73,9 +81,14 @@ const List: React.FC<IListProps> = ({
     : undefined;
 
   useEffect(() => {
-    dispatch(fetchRecords(httpGetClient));
-  }, [dispatch, httpGetClient]);
+    if (listType === 'entradas') {
+      dispatch(fetchEntries(httpGetClient));
+    } else {
+      dispatch(fetchExpenses(httpGetClient));
+    }
+  }, [dispatch, httpGetClient, listType]);
 
+  if (loading) return <ListSkeleton />;
   return (
     <>
       <Header
@@ -89,10 +102,10 @@ const List: React.FC<IListProps> = ({
         {data?.map(({ amount, name, createdAt, frequency }) => (
           <ListItem
             key={createdAt + name}
-            amount={format({ amount }).formattedAmount}
+            amount={formatCurrency({ amount }).formattedAmount}
             title={name}
             frequency={frequency}
-            date={createdAt}
+            date={formatDate({ date: new Date(createdAt) })}
           />
         ))}
       </Container>
