@@ -26,6 +26,7 @@ export class RemoteCreateGain implements CreateGain {
       id: data.id,
       name: data.name,
       frequency: data.frequency,
+      description: data.description,
       amount: data.amount,
       createdAt: data.createdAt,
       type: data.type,

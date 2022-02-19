@@ -12,8 +12,8 @@ import { HttpGetClient } from '../../../data/protocols/http';
 import { FormatCurrency } from '../../../domain/useCases/Currency/currency';
 import { GetYearsByRecords } from '../../../domain/useCases/DatesByRecords/year-by-records';
 import { FormatDateRecord } from '../../../domain/useCases/DatesByRecords/format-date-record';
-import { fetchRecords as fetchEntries } from '../../../data/store/entries/actions';
-import { fetchRecords as fetchExpenses } from '../../../data/store/expenses/actions';
+import { fetchRecords } from '../../../data/store/entries-and-expenses/actions';
+
 
 import { Container } from './styled';
 
@@ -45,17 +45,16 @@ const List: React.FC<IListProps> = ({
   currencyFormatterClient,
   httpGetClient,
 }) => {
-  const { type } = useParams();
+  const { type: listType } = useParams();
 
   const formatCurrency = currencyFormatterClient.format;
   const formatDate = dateFormatterClient.formatDate;
 
-  const listType = type === 'entradas' ? 'entradas' : 'saidas';
-  const reducer = type === 'entradas' ? 'entries' : 'expenses';
+  const type = listType === 'entradas' ? 'entradas' : 'saidas';
 
   const dispatch = useDispatch();
-  const records: Records = useSelector((reducers) => reducers[reducer].data);
-  const loading: boolean = useSelector((reducers) => reducers[reducer].loading);
+  const records: Records = useSelector(({all}) => all.records);
+  const loading: boolean = useSelector(({all}) => all.loading);
 
   const years = dateFormatterClient.getYears({ records });
   const months = [...MONTHS_ARRAY];
@@ -81,27 +80,28 @@ const List: React.FC<IListProps> = ({
     : undefined;
 
   useEffect(() => {
-    if (listType === 'entradas') {
-      dispatch(fetchEntries(httpGetClient));
-    } else {
-      dispatch(fetchExpenses(httpGetClient));
-    }
-  }, [dispatch, httpGetClient, listType]);
+    dispatch(fetchRecords({httpGetClient, type}))
+  }, [dispatch, httpGetClient, type]);
+
+  useEffect(() => {
+    setSelectedYear(years[0])
+    //eslint-disable-next-line
+  }, [records]);
 
   if (loading) return <ListSkeleton />;
   return (
     <>
       <Header
-        type={listType}
+        type={type}
         months={months}
         years={years}
         onMonthChange={handleMonth}
         onYearChange={handleYear}
       />
       <Container>
-        {data?.map(({ amount, name, createdAt, frequency }) => (
+        {data?.map(({ amount, name, createdAt, frequency , id}) => (
           <ListItem
-            key={createdAt + name}
+            key={id}
             amount={formatCurrency({ amount }).formattedAmount}
             title={name}
             frequency={frequency}

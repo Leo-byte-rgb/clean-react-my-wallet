@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 type ButtonUIProps = {
   bgColor: undefined | 'warning' | 'primary';
@@ -26,7 +26,32 @@ export const ButtonUI = styled.button<ButtonUIProps>`
 
   transition: all 0.3s;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   &:hover {
     filter: brightness(0.9);
   }
+  &:disabled {
+    cursor: default;
+    filter: brightness(0.8);
+  }
+`;
+
+const spin = keyframes`
+   0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Loader = styled.div`
+  animation: ${spin} 1s infinite linear;
+  border-left: 2px solid #fff;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
 `;

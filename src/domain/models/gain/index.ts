@@ -4,5 +4,6 @@ export type Gain = {
   amount: number;
   type: string;
   frequency: string;
+  description: string;
   createdAt: Date;
 };

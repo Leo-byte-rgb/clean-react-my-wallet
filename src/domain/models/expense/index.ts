@@ -3,6 +3,7 @@ export type Expense = {
   name: string;
   amount: number;
   type: string;
+  description: string;
   frequency: string;
   createdAt: Date;
 };

@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import entries from './entries/reducer';
-import expenses from './expenses/reducer';
+import all from './entries-and-expenses/reducer';
 
 export const combinedReducers = combineReducers({
-  entries,
-  expenses,
+  all,
 });
 
 export type AppState = ReturnType<typeof combinedReducers>;

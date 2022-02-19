@@ -1,3 +1,0 @@
-export const START_LOAD = '@EXPENSES/START_LOAD';
-export const FETCH_RECORDS = '@EXPENSES/FETCH_RECORDS';
-export const ERROR = '@EXPENSES/ERROR';

@@ -1,6 +1,6 @@
 const typesOption = [
-  { label: 'Saída', value: 'saída' },
-  { label: 'Entrada', value: 'entrada' },
+  { label: 'Saída', value: 'saidas' },
+  { label: 'Entrada', value: 'entradas' },
 ];
 const frequencyOptions = [
   { label: 'Recorrente', value: 'recorrente' },

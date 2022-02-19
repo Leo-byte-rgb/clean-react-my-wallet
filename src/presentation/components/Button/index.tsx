@@ -1,14 +1,15 @@
 import React, { ButtonHTMLAttributes } from 'react';
-import { ButtonUI } from './style';
+import { ButtonUI, Loader } from './style';
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   color?: 'primary' | 'warning';
+  isLoading?: boolean;
 }
 
-const Button = ({ color, text, ...props }: IButtonProps) => (
-  <ButtonUI bgColor={color} {...props}>
-    {text}
+const Button = ({ color, text, isLoading, ...props }: IButtonProps) => (
+  <ButtonUI bgColor={color} {...props} disabled={isLoading || props.disabled}>
+    {isLoading ? <Loader /> : text} 
   </ButtonUI>
 );
 
