@@ -80,6 +80,24 @@
       "amount": "133",
       "description": "Omnis id laboriosam ab possimus.",
       "id": 9
+    },
+    {
+      "type": "",
+      "createdAt": "2002-10-08",
+      "name": "Lançar segunda versão Mentor Estratégico 2",
+      "frequency": "eventual",
+      "amount": "2000",
+      "description": "Lançar segunda versão Mentor Estratégico 2",
+      "id": 10
+    },
+    {
+      "type": "entradas",
+      "createdAt": "2002-10-08",
+      "name": "Lançar segunda versão Mentor Estratégico",
+      "frequency": "eventual",
+      "amount": "2000",
+      "description": "Lançar segunda versão Mentor Estratégico",
+      "id": 11
     }
   ]
 }

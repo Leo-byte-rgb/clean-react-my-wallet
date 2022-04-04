@@ -1,17 +1,16 @@
 const theme = {
-  title: "dark",
+  title: "white",
   colors: {
-    primaryBackground: "#272727",
-    secondaryBackground: "#2F2F2F",
-    tertiaryBackground: "#3F3F3F",
+    primaryBackground: "#F5F8FB",
+    primaryText: "#536698",
+    secondaryText: "#B6C5D7",
     white: "#FFFFFF",
-    green: "#2F615B",
-    blue: "#2196F3",
-    purple: "#5F5980",
-    secondaryPurple: "#4E41F0",
-    red: "#E44C4E",
-    contrastText: "#FF9837",
-    gainsboro: "#DFDFDF",
+    profit: "#7FE3DE",
+    loss: "#FF5999",
+    button: "#5E58E2",
+    aside: "#040849",
+    hover: "#1D215B",
+    grey: "#F2F5F9",
   },
 };
 
