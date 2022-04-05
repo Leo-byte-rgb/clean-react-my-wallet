@@ -1,13 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "styled-components";
-import { Provider } from "react-redux";
+import { AsideProvider } from "main/contexts/AsideContext";
 import { ToastContainer } from "react-toastify";
-import store from "./main/store";
-import theme from "./presentation/theme/theme";
-import GlobalStyle from "./presentation/theme/globalStyle";
-import Routes from "./main/routes";
+import theme from "presentation/theme/theme";
+import GlobalStyle from "presentation/theme/globalStyle";
+import Routes from "main/routes";
 import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.render(
@@ -25,12 +23,10 @@ ReactDOM.render(
         pauseOnHover
       />
       <GlobalStyle />
-      <Provider store={store}>
+      <AsideProvider>
         <Routes />
-      </Provider>
+      </AsideProvider>
     </ThemeProvider>
   </>,
   document.getElementById("root")
 );
-
-reportWebVitals(console.log);

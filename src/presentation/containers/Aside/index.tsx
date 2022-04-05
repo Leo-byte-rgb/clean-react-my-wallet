@@ -1,6 +1,5 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { handleAside } from "../../../main/store/theme/actions";
+import React, { useContext } from "react";
+import { context } from "main/contexts/AsideContext";
 import { FaHome, FaBriefcase } from "react-icons/fa";
 import { BsTagFill, BsCurrencyExchange } from "react-icons/bs";
 import { RiDashboardFill, RiMenuFill } from "react-icons/ri";
@@ -15,13 +14,11 @@ import {
 } from "./style";
 
 const Aside = () => {
-  const dispatch = useDispatch();
-  const isOpen = useSelector(({ theme }) => theme.isAsideOpened);
+  const { open, handle } = useContext(context);
 
-  const handleAsideState = () => dispatch(handleAside());
   return (
-    <Container isOpen={isOpen}>
-      <ToggleButton onClick={handleAsideState}>
+    <Container isOpen={open}>
+      <ToggleButton onClick={handle}>
         <RoundedContainer>
           <RiMenuFill />
         </RoundedContainer>
